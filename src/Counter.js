@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 class Counter extends Component { 
 
 	decrement = () => {
+		//this is the action 
+		//dispatch is made available through connect
 		this.props.dispatch({ type: 'DECREMENT' })
 	}
 
@@ -33,5 +35,7 @@ function mapStateToProps(state) {
 	}
 }
 
+
+//connet the function to redux
 export default connect(mapStateToProps)(Counter)
 
