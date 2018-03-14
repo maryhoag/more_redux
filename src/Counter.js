@@ -12,6 +12,10 @@ class Counter extends Component {
 	increment = () => {
     this.props.dispatch({ type: 'INCREMENT' });
   }
+  //function declared
+  acitvateLasers = () => {
+  	console.log("boom")
+  }
 	
 	render() {
 		return (
@@ -22,6 +26,11 @@ class Counter extends Component {
 					<button onClick={this.decrement}>-</button>
 					<span>{this.props.count}</span>
 					<button onClick={this.increment}>+</button>
+				</div>
+				<br />
+				<div>
+					//button element and onClick in one line
+					<button onClick={this.acitvateLasers}>activate lasers</button>
 				</div>
 			</div>
 		)
