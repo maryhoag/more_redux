@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-class Counter extends Component { 
+import {
+	activateGeod,
+	closeGeod
+} from './redux'
 
-	decrement = () => {
-		//this is the action 
-		//dispatch is made available through connect
-		this.props.dispatch({ type: 'DECREMENT' })
-	}
+import './App.css'
 
-	increment = () => {
-    this.props.dispatch({ type: 'INCREMENT' });
-  }
+
+class Counter extends Component {
+
   //function declared
   acitvateLasers = () => {
   	console.log("boom")
@@ -21,30 +20,43 @@ class Counter extends Component {
 		return (
 
 			<div>
-				<h2>Counter</h2>
-				<div>
-					<button onClick={this.decrement}>-</button>
-					<span>{this.props.count}</span>
-					<button onClick={this.increment}>+</button>
+				<div className="buttonDiv">
+					{/* button element and onClick in one line */}
+					<button className="btn" onClick={this.acitvateLasers}>activateLasers</button>
 				</div>
 				<br />
-				<div>
-					//button element and onClick in one line
-					<button onClick={this.acitvateLasers}>activate lasers</button>
+				<div className="buttonDiv">
+				<h1>{this.props.geod.title || 'why hello there'}</h1>
+				{this.props.geod.title ?
+					<button className="btn" onClick={this.props.closeGeod}>
+						Exit geod
+					</button> :
+					<button onClick={() => this.props.activateGeod({ title: "boo"})}>
+						Click here!
+					</button>
+				}
 				</div>
+
 			</div>
-		)
-	}
+	)}
 }
 
 
 function mapStateToProps(state) {
 	return {
-		count: state.count
+		geod: state.geod
 	}
 }
 
+const mapDispatchToProps = {
+	activateGeod,
+	closeGeod
+}
 
-//connet the function to redux
-export default connect(mapStateToProps)(Counter)
+
+/* connect the function to redux */
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Counter)
 
